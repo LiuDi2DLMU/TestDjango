@@ -1,0 +1,2 @@
+- python manage.py runserver 8000
+- 用来打开服务
