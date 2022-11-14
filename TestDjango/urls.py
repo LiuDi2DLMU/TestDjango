@@ -18,5 +18,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.hello),
+    url("hello/", views.hello),
+    url("first/", views.first),
 ]
