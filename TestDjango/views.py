@@ -10,3 +10,6 @@ def first(request):
     context          = {}
     context['hello'] = 'Hello World, first!'
     return render(request, 'first.html', context)
+    
+def index(request):
+    return HttpResponse("Index! ")

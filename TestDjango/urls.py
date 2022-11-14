@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     url("hello/", views.hello),
     url("first/", views.first),
+    url("", views.index),
 ]
