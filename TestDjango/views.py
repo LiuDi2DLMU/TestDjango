@@ -12,4 +12,4 @@ def first(request):
     return render(request, 'first.html', context)
     
 def index(request):
-    return HttpResponse("Index! ")
+    return render(request, 'index.html')
