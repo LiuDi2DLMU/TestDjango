@@ -14,11 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-
+from django.urls import include, path
 from . import views
+from neuropeptide.views import index
 
 urlpatterns = [
-    url("hello/", views.hello),
-    url("first/", views.first),
-    url("", views.index),
+    path("neuropeptide/", include("neuropeptide.urls")),
+    path("zsm/", include("zsm.urls")),
+    path("index", include("main.urls")),
+    path("", include("main.urls")),
 ]

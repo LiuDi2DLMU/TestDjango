@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Document Title -->
-    <title>标题栏</title>
+    <title>标题栏123</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
     <!--==== Custom css file ====-->
-    <link rel="stylesheet" href="{% static 'css/index/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/neuropeptide/custom.css' %}">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
                 <span class="b-line-under"></span>
                 <div class="input-group-append">
                     <button type="button" class="btn">
-                        <img src="../static/images/search-icon.svg" alt="" class="img-fluid svg">
+                        <img src="../../static/images/search-icon.svg" alt="" class="img-fluid svg">
                     </button>
                 </div>
             </div>
@@ -72,12 +72,7 @@
                             <ul class="nav nav-menu">
                                 <li><a href="index.html">主页</a></li>
                                 <li><a href="#">关于我们</a></li>
-                                <li class="menu-item-has-children"><a href="#"> 项目 </a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#"> ZSM</a></li>
-                                        <li><a href="#"> LD</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="{% url 'main' %}"> 返回项目组首页 </a></li>
                             </ul>
                         </div>
                         <!-- End of Nav Menu -->
@@ -126,32 +121,6 @@
 
     </div>
 
-    <!-- Footer -->
-    <footer class="footer-container d-flex align-items-center">
-        <div class="container">
-            <div class="row align-items-center footer">
-                <div class="col-md-4 text-center text-md-left order-md-1 order-2">
-                    <div class="footer-social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                        <a href="#"><i class="fa fa-google"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex justify-content-center order-md-2 order-1">
-                    假LOGO
-<!--                    <a href="index.html"><img src="../static/images/logo.png" alt="" class="img-fluid"></a>-->
-                </div>
-                <div class="col-md-4 order-md-3 order-3">
-                    <div class="footer-cradit text-center text-md-right">
-                        <p>© 2022 <a href="#">DLMU</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
 
 
 </body>
