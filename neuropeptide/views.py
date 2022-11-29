@@ -7,8 +7,28 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.files.storage import default_storage
 from django.conf import settings
+from Bio import SeqIO
+from io import StringIO
 
 from .forms import add_task
+
+
+# 验证是否为fasta格式、长度是否小于100、是否是二十种氨基酸
+def is_fasta(str_fasta):
+    fasta = SeqIO.parse(StringIO(str_fasta), "fasta")
+    if not any(fasta):
+        return False
+    else:
+        for record in fasta:
+            if len(record.seq) > 100:
+                return False
+            else:
+                temp = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L',
+                        'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
+                for i in record.seq:
+                    if i not in temp:
+                        return False
+    return True
 
 
 def index(request):
@@ -38,6 +58,7 @@ def form_submit(request):
         "state": 1,
         "content": "Submit successfully. After the task is completed, the results will be sent to your email."
     }
+    fasta_content = None
     if email == "":
         content["state"] = 0
         content["content"] = "Submit failed, the email is required."
@@ -47,21 +68,23 @@ def form_submit(request):
     elif not (fasta_file or fasta_str):
         content["state"] = 0
         content["content"] = "A file or data must be submitted."
-    elif fasta_file:
-        if len(fasta_file) > 512000:
-            content["state"] = 0
-            content["content"] = "The file size needs to be less than 500kb."
+    else:
+        if fasta_file:
+            fasta_content = fasta_file.read()
+            if len(fasta_file) > 512000:
+                content["state"] = 0
+                content["content"] = "The file size needs to be less than 500kb."
         else:
-            # TODO fasta格式文件的验证
-            b = 1
-    elif fasta_str:
-        # TODO str的fasta格式验证
-        a = 1
+            fasta_content = fasta_str
+        if not is_fasta(fasta_content):
+            content["state"] = 0
+            content["content"] = "The data you entered or the file you uploaded does not meet the requirements."
     if content["state"] == 1:
         try:
             # 文件保存
             new_file_name = "".join(random.sample([x for x in string.ascii_letters + string.digits], 10)) + ".fasta"
             file_path = settings.STORAGE_LOCATION
+            # 暴力尝试9999次无重复即可
             for i in range(9999):
                 if os.path.exists(os.path.join(file_path, new_file_name)):
                     new_file_name = "".join(random.sample([x for x in string.ascii_letters + string.digits], 10))
@@ -69,11 +92,8 @@ def form_submit(request):
                     break
             if os.path.exists(os.path.join(file_path, new_file_name)):
                 raise Exception("Unknown error")
-            if fasta_file:
-                default_storage.save(os.path.join(file_path, new_file_name), fasta_file)
-            else:
-                with open(os.path.join(file_path, new_file_name), "a+") as file:
-                    file.writelines(fasta_str)
+            with open(os.path.join(file_path, new_file_name), "a+") as file:
+                file.writelines(fasta_content)
             # 数据保存到数据库
             from .models import Task
             task = Task()
