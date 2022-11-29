@@ -108,7 +108,7 @@ def run_task():
         elif task_name == "zsm":
             run_zsm(run_record)
         elif task_name is None:
-            time.sleep(settings.SLEEPTIME)
+            time.sleep(settings.SLEEP_TIME)
             print(f"No task, sleep {settings.SLEEP_TIME} seconds")
             # 暂无任务
 

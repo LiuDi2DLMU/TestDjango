@@ -97,7 +97,10 @@
 > 在settings里添加全局变量 保存文件路径   
 > 通过`from django.conf import settings`可以使用变量  
 >  
-> ###  
+> ### 数据库state记录
+> state == 0 表示提交以后还没执行的任务
+> state == 1 表示提交以后已经顺利执行完毕的任务
+> state == 2 表示提交以后在执行过程中出错的任务
 > 
 > 
 > 
