@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     "main",
     "neuropeptide",
     "zsm"
@@ -80,8 +81,12 @@ WSGI_APPLICATION = 'TestDjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'task',
+        'USER': 'root',
+        'PASSWORD': 'root123',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
     }
 }
 
@@ -110,13 +115,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Beijing'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -130,3 +135,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 固定的保存文件路径 这里应该用绝对路径
+STORAGE_LOCATION = 'F:\\pythonproject\\TestDjango\\storage_file'
+MAIL_HOST = "smtp.qq.com"
+MAIL_SENDER = "644109839@qq.com"
+MAIL_PASSWD = "odaekreejzgibdcf"
+SLEEPTIME = 10

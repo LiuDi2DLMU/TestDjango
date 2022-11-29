@@ -47,12 +47,6 @@
                 <li><a class="nav-link scrollto" href="#introduction">Introduction</a></li>
                 <li><a class="nav-link scrollto" href="#service">Service</a></li>
                 <li><a class="nav-link scrollto" href="#dataset">Dataset</a></li>
-                <li class="dropdown"><a href="#"><span>已有课题</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="{% url 'zsm' %}">ZSM</a></li>
-                        <li><a href="{% url 'neuropeptide' %}">LD</a></li>
-                    </ul>
-                </li>
                 <li><a class="nav-link scrollto" href="#contact">Contact Us</a></li>
                 <li><a class="nav-link getstarted" href="{% url 'main' %}">Return to Home Page</a></li>
             </ul>
@@ -69,8 +63,10 @@
         <div class="row">
             <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                  data-aos="fade-up" data-aos-delay="200">
-                <h1>项目名称</h1>
-                <h2>简介</h2>
+                <h1>神经肽识别</h1>
+                <h2>
+                    这是一个用来识别神经肽的工具网站，这是一个用来识别神经肽的工具网站，这是一个用来识别神经肽的工具网站，这是一个用来识别神经肽的工具网站，这是一个用来识别神经肽的工具网站，这是一个用来识别神经肽的工具网站，
+                </h2>
             </div>
             <!--        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">-->
             <!--          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">-->
@@ -93,14 +89,17 @@
             <div class="row content">
                 <div class="col-lg-6">
                     <p>
-                        左侧配字、右侧配图
+                        论文的Introduction<br/>论文的Introduction<br/>
+                        论文的Introduction<br/>论文的Introduction<br/>
+                        论文的Introduction<br/>论文的Introduction<br/>
                     </p>
                     <ul>
                         <li><i class="ri-check-double-line"></i> 保留一个列表</li>
                     </ul>
-                    <a href="#" class="btn-learn-more">论文的页面</a>
+                    <a href="https://www.baidu.com" target="_blank" class="btn-learn-more">论文的DOI，暂时用百度代替</a>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                    放一张论文里的模型框架图之类的↓
                     <img src="{% static 'assets/img/hero-img.png' %}" class="img-fluid animated" alt="">
                 </div>
             </div>
@@ -115,30 +114,32 @@
 
             <div class="section-title">
                 <h2>Service</h2>
-                <p>简要介绍怎么使用</p>
+                <p>简要介绍怎么使用简要介绍怎么使用简要介绍怎么使用简要介绍怎么使用简要介绍怎么使用</p>
             </div>
 
             <div class="row">
 
-                <div class="col-lg-8 mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <form action="#" method="post" role="form" class="php-email-form">
+                <div class="col-lg-8 mt-5 mt-lg-0 d-flex align-items-stretch offset-2">
+
+                    <form action="form_submit" method="post" role="form" class="php-email-form">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="name">Your Name</label>
-                                <input type="text" name="name" class="form-control" id="name">
+                                <label for="{{form_task.name.id_for_label}}">{{form_task.name.label}}</label>
+                                {{form_task.name}}
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="name">Your Email</label>
-                                <input type="email" class="form-control" name="email" id="email" required>
+                                <label for="{{form_task.email.id_for_label}}">{{form_task.email.label}}</label>
+                                {{form_task.email}}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="name">Message</label>
-                            <textarea class="form-control" name="message" rows="2"></textarea>
+                            <label for="{{form_task.data.id_for_label}}">{{form_task.data.label}}</label>
+                            {{form_task.data}}
                         </div>
                         <div class="form-group">
-                            <label for="name">Fasta File</label>
-                            <input type="file" class="hidden" id="fasta_file" style="display:none;">
+                            <label for="{{form_task.file.id_for_label}}">{{form_task.file.label}} File</label>
+                            {{form_task.file}}
                             <button class="btn btn-info form-control" type="button"
                                     onclick="document.getElementById('fasta_file').click()">Select Fasta File
                             </button>
@@ -171,15 +172,36 @@
 
             <div class="row content">
                 <div class="col-lg-6">
-                    <p>数据集介绍</p>
+                    <p>回头把论文里数据集的描述复制过来</p>
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0">
                     <p>
-                        数据集的下载为：
+                        The dataset is available for download at the following address.
                     </p>
-                    <a href="{% static 'file/test_download_file.txt' %}" class="btn-learn-more">
-                        <i class="bi-download"></i> 测试用文件
-                    </a>
+                    <div>
+                        <a href="{% static 'file/neuropeptide/Positive samples for training dataset.txt' %}"
+                           download="" class="btn-learn-more">
+                            <i class="bi-download"></i> Positive samples for training dataset
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% static 'file/neuropeptide/Negative samples for training dataset.txt' %}"
+                           download="" class="btn-learn-more">
+                            <i class="bi-download"></i> Negative samples for training dataset
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% static 'file/neuropeptide/Positive samples for independent dataset.txt' %}"
+                           download="" class="btn-learn-more">
+                            <i class="bi-download"></i> Positive samples for independent dataset
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% static 'file/neuropeptide/Negative samples for independent dataset.txt' %}"
+                           download="" class="btn-learn-more">
+                            <i class="bi-download"></i> Negative samples for independent dataset
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -193,7 +215,7 @@
 
             <div class="section-title">
                 <h2>Contact Us</h2>
-                <p>如果有问题请联系 巴拉巴拉</p>
+                <p>If you encounter any problems, you can contact the following person in charge.</p>
             </div>
 
             <div class="row">
@@ -202,19 +224,19 @@
                         <div class="name">
                             <i class="bi bi-person"></i>
                             <h4>Name:</h4>
-                            <p>LD</p>
+                            <p>Di Liu</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>info@example.com</p>
+                            <p>644109839@qq.com</p>
                         </div>
 
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
                             <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <p>No. 1, Linghai Road, Dalian City, Liaoning Province, China</p>
                         </div>
                     </div>
                 </div>
