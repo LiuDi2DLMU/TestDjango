@@ -97,4 +97,7 @@
 > 在settings里添加全局变量 保存文件路径   
 > 通过`from django.conf import settings`可以使用变量  
 >  
+> ###  
+> 
+> 
 > 

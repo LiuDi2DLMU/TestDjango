@@ -138,7 +138,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 固定的保存文件路径 这里应该用绝对路径
 STORAGE_LOCATION = 'F:\\pythonproject\\TestDjango\\storage_file'
+# 邮箱的相关设置
 MAIL_HOST = "smtp.qq.com"
 MAIL_SENDER = "644109839@qq.com"
-MAIL_PASSWD = "odaekreejzgibdcf"
+MAIL_PASSWD = ""
+# 没有任务时，脚本闲置时间，真实运行时设大一点
 SLEEPTIME = 10
