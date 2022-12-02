@@ -34,7 +34,7 @@
 <body>
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top ">
+<header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
         <h1 class="logo me-auto"><a href="index.html">DLMU</a></h1>
@@ -99,7 +99,6 @@
                     <a href="https://www.baidu.com" target="_blank" class="btn-learn-more">论文的DOI，暂时用百度代替</a>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                    放一张论文里的模型框架图之类的↓
                     <img src="{% static 'assets/img/hero-img.png' %}" class="img-fluid animated" alt="">
                 </div>
             </div>
@@ -109,7 +108,7 @@
     <!-- End Introduction Section -->
 
     <!-- ======= Service Section ======= -->
-    <section id="service" class="contact section-bg">
+    <section id="service" class="service section-bg">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -119,7 +118,7 @@
 
             <div class="row">
 
-                <div class="col-lg-8 mt-5 mt-lg-0 d-flex align-items-stretch offset-2">
+                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
 
                     <form action="form_submit" method="post" role="form" class="php-email-form">
                         {% csrf_token %}
@@ -138,7 +137,7 @@
                             {{form_task.data}}
                         </div>
                         <div class="form-group">
-                            <label for="{{form_task.file.id_for_label}}">{{form_task.file.label}} File</label>
+                            <label for="{{form_task.file.id_for_label}}">{{form_task.file.label}}</label>
                             {{form_task.file}}
                             <button class="btn btn-info form-control" type="button"
                                     onclick="document.getElementById('fasta_file').click()">Select Fasta File
@@ -155,7 +154,30 @@
                         </div>
                     </form>
                 </div>
-
+                <div class="col-lg-5 content">
+                    <div class="row">
+                        <div class="accordion-list">
+                            <ul>
+                                <li>
+                                    <a class="collapsed">
+                                        <span>01</span>
+                                        Your email is the only way to communicate with you after we have completed the
+                                        task you have submitted, so please be sure to fill it out carefully.
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a class="collapsed">
+                                        <span>02</span>
+                                        Your data should be submitted in fasta format and only one item of the text or
+                                        file should be submitted.
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -163,7 +185,7 @@
     <!-- End Service Section -->
 
     <!-- ======= Dataset Section ======= -->
-    <section id="dataset" class="about">
+    <section id="dataset" class="dataset">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -174,34 +196,34 @@
                 <div class="col-lg-6">
                     <p>回头把论文里数据集的描述复制过来</p>
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0">
-                    <p>
-                        The dataset is available for download at the following address.
-                    </p>
-                    <div>
-                        <a href="{% static 'file/neuropeptide/Positive samples for training dataset.txt' %}"
-                           download="" class="btn-learn-more">
-                            <i class="bi-download"></i> Positive samples for training dataset
-                        </a>
-                    </div>
-                    <div>
-                        <a href="{% static 'file/neuropeptide/Negative samples for training dataset.txt' %}"
-                           download="" class="btn-learn-more">
-                            <i class="bi-download"></i> Negative samples for training dataset
-                        </a>
-                    </div>
-                    <div>
-                        <a href="{% static 'file/neuropeptide/Positive samples for independent dataset.txt' %}"
-                           download="" class="btn-learn-more">
-                            <i class="bi-download"></i> Positive samples for independent dataset
-                        </a>
-                    </div>
-                    <div>
-                        <a href="{% static 'file/neuropeptide/Negative samples for independent dataset.txt' %}"
-                           download="" class="btn-learn-more">
-                            <i class="bi-download"></i> Negative samples for independent dataset
-                        </a>
-                    </div>
+                <div class="col-lg-6 col-md-6 links">
+                    <h4>The dataset is available for download at the following address.</h4>
+                    <ul>
+                        <li>
+                            <a href="{% static 'file/neuropeptide/Positive samples for training dataset.txt' %}"
+                               download="" class="btn-learn-more">
+                                <i class="bi-download"></i> Positive samples for training dataset
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% static 'file/neuropeptide/Negative samples for training dataset.txt' %}"
+                               download="" class="btn-learn-more">
+                                <i class="bi-download"></i> Negative samples for training dataset
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% static 'file/neuropeptide/Positive samples for independent dataset.txt' %}"
+                               download="" class="btn-learn-more">
+                                <i class="bi-download"></i> Positive samples for independent dataset
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% static 'file/neuropeptide/Negative samples for independent dataset.txt' %}"
+                               download="" class="btn-learn-more">
+                                <i class="bi-download"></i> Negative samples for independent dataset
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
@@ -245,17 +267,6 @@
     </section><!-- End Contact Section -->
 
 </main><!-- End #main -->
-
-<!-- ======= Footer ======= -->
-<footer id="footer">
-    <div class="container footer-bottom clearfix">
-        <div class="copyright">
-            底部栏
-        </div>
-
-    </div>
-    </div>
-</footer><!-- End Footer -->
 
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

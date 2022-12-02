@@ -12,7 +12,7 @@ class add_task(forms.Form):
                              widget=forms.EmailInput(attrs={"class": "form-control"}))
     data = forms.CharField(label="Data",
                            required=False,
-                           widget=forms.Textarea(attrs={"class": "form-control", "rows": "4"}))
+                           widget=forms.Textarea(attrs={"class": "form-control", "rows": "6", "style": "resize:none"}))
     file = forms.FileField(label="Fasta File",
                            required=False,
                            widget=forms.FileInput(attrs={"style": "display:none;", "id": "fasta_file"}))

@@ -34,7 +34,7 @@
 <body>
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top ">
+<header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
         <h1 class="logo me-auto"><a href="index.html">DLMU</a></h1>
@@ -47,12 +47,6 @@
                 <li><a class="nav-link scrollto" href="#introduction">Introduction</a></li>
                 <li><a class="nav-link scrollto" href="#service">Service</a></li>
                 <li><a class="nav-link scrollto" href="#dataset">Dataset</a></li>
-                <li class="dropdown"><a href="#"><span>已有课题</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="{% url 'zsm' %}">ZSM</a></li>
-                        <li><a href="{% url 'neuropeptide' %}">LD</a></li>
-                    </ul>
-                </li>
                 <li><a class="nav-link scrollto" href="#contact">Contact Us</a></li>
                 <li><a class="nav-link getstarted" href="{% url 'main' %}">Return to Home Page</a></li>
             </ul>
@@ -70,11 +64,11 @@
             <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                  data-aos="fade-up" data-aos-delay="200">
                 <h1>项目名称</h1>
-                <h2>简介</h2>
+                <h2>简介,旁边的图片可以取消，也可以替换</h2>
             </div>
-            <!--        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">-->
-            <!--          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">-->
-            <!--        </div>-->
+            <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                <img src="{% static 'assets/img/hero-img.png' %}" class="img-fluid animated" alt="">
+            </div>
         </div>
     </div>
 
@@ -110,7 +104,7 @@
     <!-- End Introduction Section -->
 
     <!-- ======= Service Section ======= -->
-    <section id="service" class="contact section-bg">
+    <section id="service" class="service section-bg">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -120,7 +114,7 @@
 
             <div class="row">
 
-                <div class="col-lg-8 mt-5 mt-lg-0 d-flex align-items-stretch">
+                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
                     <form action="#" method="post" role="form" class="php-email-form">
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -134,7 +128,7 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Message</label>
-                            <textarea class="form-control" name="message" rows="2"></textarea>
+                            <textarea class="form-control" name="message" style="resize: none;" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="name">Fasta File</label>
@@ -154,7 +148,30 @@
                         </div>
                     </form>
                 </div>
-
+                <div class="col-lg-5 content">
+                    <div class="row">
+                        <div class="accordion-list">
+                            <ul>
+                                <li>
+                                    <a class="collapsed">
+                                        <span>01</span>
+                                        Your email is the only way to communicate with you after we have completed the
+                                        task you have submitted, so please be sure to fill it out carefully.
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a class="collapsed">
+                                        <span>02</span>
+                                        Your data should be submitted in fasta format and only one item of the text or
+                                        file should be submitted.
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -162,7 +179,7 @@
     <!-- End Service Section -->
 
     <!-- ======= Dataset Section ======= -->
-    <section id="dataset" class="about">
+    <section id="dataset" class="dataset">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -170,16 +187,21 @@
             </div>
 
             <div class="row content">
-                <div class="col-lg-6">
-                    <p>数据集介绍</p>
+                <div class="col-lg-6" >
+                    数据集是来自~~</br>
+                    数据集是来自~~</br>
+                    数据集是来自~~</br>
+                    数据集是来自~~</br>
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0">
-                    <p>
-                        数据集的下载为：
-                    </p>
-                    <a href="{% static 'file/test_download_file.txt' %}" class="btn-learn-more">
-                        <i class="bi-download"></i> 测试用文件
-                    </a>
+                <div class="col-lg-6 col-md-6 links">
+                    <h4>数据集的下载为：</h4>
+                    <ul>
+                        <li>
+                            <a href="{% static 'file/test_download_file.txt' %}">
+                               <i class="bi-download"></i> 测试用文件
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
@@ -197,7 +219,156 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3">
+                    <div class="info">
+                        <div class="name">
+                            <i class="bi bi-person"></i>
+                            <h4>Name:</h4>
+                            <p>LD</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@example.com</p>
+                        </div>
+
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="info">
+                        <div class="name">
+                            <i class="bi bi-person"></i>
+                            <h4>Name:</h4>
+                            <p>LD</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@example.com</p>
+                        </div>
+
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="info">
+                        <div class="name">
+                            <i class="bi bi-person"></i>
+                            <h4>Name:</h4>
+                            <p>LD</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@example.com</p>
+                        </div>
+
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="info">
+                        <div class="name">
+                            <i class="bi bi-person"></i>
+                            <h4>Name:</h4>
+                            <p>LD</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@example.com</p>
+                        </div>
+
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="info">
+                        <div class="name">
+                            <i class="bi bi-person"></i>
+                            <h4>Name:</h4>
+                            <p>LD</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@example.com</p>
+                        </div>
+
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="info">
+                        <div class="name">
+                            <i class="bi bi-person"></i>
+                            <h4>Name:</h4>
+                            <p>LD</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@example.com</p>
+                        </div>
+
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="info">
+                        <div class="name">
+                            <i class="bi bi-person"></i>
+                            <h4>Name:</h4>
+                            <p>LD</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@example.com</p>
+                        </div>
+
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
                     <div class="info">
                         <div class="name">
                             <i class="bi bi-person"></i>
@@ -223,17 +394,6 @@
     </section><!-- End Contact Section -->
 
 </main><!-- End #main -->
-
-<!-- ======= Footer ======= -->
-<footer id="footer">
-    <div class="container footer-bottom clearfix">
-        <div class="copyright">
-            底部栏
-        </div>
-
-    </div>
-    </div>
-</footer><!-- End Footer -->
 
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
