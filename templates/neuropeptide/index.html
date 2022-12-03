@@ -128,7 +128,9 @@
                                 {{form_task.name}}
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="{{form_task.email.id_for_label}}">{{form_task.email.label}}</label>
+                                <label for="{{form_task.email.id_for_label}}">
+                                    <span style="color: red;">*</span>{{form_task.email.label}}
+                                </label>
                                 {{form_task.email}}
                             </div>
                         </div>
@@ -165,13 +167,22 @@
                                         task you have submitted, so please be sure to fill it out carefully.
                                     </a>
                                 </li>
-                            </ul>
-                            <ul>
                                 <li>
                                     <a class="collapsed">
                                         <span>02</span>
-                                        Your data should be submitted in fasta format and only one item of the text or
+                                        Your data should be submitted in fasta format and only one item of the data or
                                         file should be submitted.
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="collapsed">
+                                        <span>03</span>
+                                        The data you submit should meet the following conditions.</br>
+                                        1. The length of the submitted amino acid sequence is less than 100.</br>
+                                        2. The submitted file is less than 500kb.</br>
+                                        3. The number of sequences submitted is within 100</br>
+                                        4. The submitted amino acid sequence should consist of 'A', 'C', 'D', 'E', 'F',
+                                        'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y'.
                                     </a>
                                 </li>
                             </ul>

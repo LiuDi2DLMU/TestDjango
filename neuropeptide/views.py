@@ -19,7 +19,9 @@ def is_fasta(str_fasta):
     if not any(fasta):
         return False
     else:
+        count = 0
         for record in fasta:
+            count += 1
             if len(record.seq) > 100:
                 return False
             else:
@@ -28,6 +30,8 @@ def is_fasta(str_fasta):
                 for i in record.seq:
                     if i not in temp:
                         return False
+            if count == 100:
+                return False
     return True
 
 

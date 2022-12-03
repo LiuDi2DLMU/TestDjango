@@ -63,7 +63,7 @@ def run_neuropeptide(record):
     out, err = subp.communicate()
     out = json.loads(out.split("\n")[0])
     if out['state']:
-        result_file_path = os.path.join(settings.STORAGE_LOCATION, record.filename.split('.')[0]+".csv")
+        result_file_path = out["content"]
         sent_email(out['state'], record, result_file_path)
         record.state = 1
         record.save()
@@ -77,8 +77,9 @@ def run_neuropeptide(record):
 def run_zsm(record):
     return 0
 
-
 def run_task():
+    clean_time = int(time.time())
+    task_count = 0
     while True:
         # 每多一个项目，就多一个模型，多一张表，同时允许跑一个项目的脚本
         # 将项目和任务名称对应地填写到tables和task_names
@@ -104,13 +105,22 @@ def run_task():
                     run_record = latest_records[i]
         # 并且在这里增加对应的分支
         if task_name == "neuropeptide":
+            print("执行神经肽任务")
+            task_count += 1
             run_neuropeptide(run_record)
         elif task_name == "zsm":
+            print("执行师兄任务")
+            task_count += 1
             run_zsm(run_record)
         elif task_name is None:
+            # 暂无任务
             time.sleep(settings.SLEEP_TIME)
             print(f"No task, sleep {settings.SLEEP_TIME} seconds")
-            # 暂无任务
+
+        if int(time.time()) - clean_time >= settings.CLEAN_TIME or task_count >= settings.CLEAN_COUNT:
+            # TODO 清理一次数据库，将所有已经完成的删除
+
+            CLEAN_TIME = 1
 
 
 run_task()

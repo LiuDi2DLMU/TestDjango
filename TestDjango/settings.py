@@ -151,3 +151,8 @@ MAIL_PASSWD = "odaekreejzgibdcf"
 # 没有任务时，脚本闲置时间，真实运行时设大一点
 
 SLEEP_TIME = 10
+
+# 每隔多久或执行多少次任务，自动清理一次存储文件，以防文件过大，磁盘爆炸
+# 7862400是三个月 500是执行任务次数
+CLEAN_TIME = 7862400
+CLEAN_COUNT = 500
