@@ -10,8 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    <link href="{% static 'assets/img/DLMU.svg' %}" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -156,7 +155,7 @@
                 </div>
                 <div class="col-lg-5 content">
                     <div class="row">
-                        <div class="accordion-list">
+                        <div class="service-note">
                             <ul>
                                 <li>
                                     <a class="collapsed">
@@ -173,10 +172,15 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="collapsed">
-                                        <span>03</span>
-                                        这里也可以采用折叠的方式，有需要可以去找模板里弄
-                                    </a>
+                                    <a data-bs-toggle="collapse" data-bs-target="#note-list-3"
+                                       class="collapsed"><span>03</span> 也可以设置成这样<i
+                                            class="bx bx-chevron-down icon-show"></i><i
+                                            class="bx bx-chevron-up icon-close"></i></a>
+                                    <div id="note-list-3" class="collapse" data-bs-parent=".service-note">
+                                        <p>
+                                            需要将div的id和a标签的target相关联
+                                        </p>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -197,7 +201,7 @@
             </div>
 
             <div class="row content">
-                <div class="col-lg-6" >
+                <div class="col-lg-6">
                     <p>
                         数据集是来自~~</br>
                         数据集是来自~~</br>
@@ -210,7 +214,7 @@
                     <ul>
                         <li>
                             <a href="{% static 'file/test_download_file.txt' %}">
-                               <i class="bi-download"></i> 测试用文件
+                                <i class="bi-download"></i> 测试用文件
                             </a>
                         </li>
                     </ul>

@@ -8,6 +8,7 @@ from django.conf import settings
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import smtplib
+from django.db.models import Q
 
 
 def sent_email(state, record, result_file_path=None):
@@ -77,6 +78,7 @@ def run_neuropeptide(record):
 def run_zsm(record):
     return 0
 
+
 def run_task():
     clean_time = int(time.time())
     task_count = 0
@@ -117,10 +119,17 @@ def run_task():
             time.sleep(settings.SLEEP_TIME)
             print(f"No task, sleep {settings.SLEEP_TIME} seconds")
 
-        if int(time.time()) - clean_time >= settings.CLEAN_TIME or task_count >= settings.CLEAN_COUNT:
+        if int(time.time()) - clean_time >= settings.CLEAN_TIME or task_count >= 0:
             # TODO 清理一次数据库，将所有已经完成的删除
-
-            CLEAN_TIME = 1
+            clean_time = time.time()
+            task_count = 0
+            file_path = settings.STORAGE_LOCATION
+            del_records = []
+            for i in range(len(tables)):
+                records = tables[i].objects.filter(~Q(state=0))
+                for temp in records:
+                    del_records.append(temp)
+            print(123)
 
 
 run_task()

@@ -9,7 +9,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #444444;
   overflow:hidden;
 }
@@ -652,22 +652,22 @@ section {
   background: #209dd8;
 }
 
-.service .accordion-list {
+.service .service-note {
   padding: 0 20px 0 20px;
 }
-.service .accordion-list ul {
+.service .service-note ul {
   padding: 0;
   list-style: none;
 }
-.service .accordion-list li + li {
+.service .service-note li + li {
   margin-top: 15px;
 }
-.service .accordion-list li {
+.service .service-note li {
   padding: 20px;
   background: #fff;
   border-radius: 4px;
 }
-.service .accordion-list a {
+.service .service-note a {
   display: block;
   position: relative;
   font-family: "Poppins", sans-serif;
@@ -677,20 +677,39 @@ section {
   outline: none;
   cursor: pointer;
 }
-.service .accordion-list span {
+.service .service-note span {
   color: #47b2e4;
   font-weight: 600;
   font-size: 18px;
   padding-right: 10px;
 }
-.service .accordion-list a.collapsed {
+.service .service-note i {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.service .service-note p {
+  margin-bottom: 0;
+  padding: 10px 0 0 0;
+}
+.service .service-note .icon-show {
+  display: none;
+}
+.service .service-note a.collapsed {
   color: #343a40;
 }
-.service .accordion-list a.collapsed:hover {
+.service .service-note a.collapsed:hover {
   color: #47b2e4;
 }
+.service .service-note a.collapsed .icon-show {
+  display: inline-block;
+}
+.service .service-note a.collapsed .icon-close {
+  display: none;
+}
 @media (max-width: 1024px) {
-  .service .content, .service .accordion-list {
+  .service .content, .service .service-note {
     padding-left: 0;
     padding-right: 0;
   }
@@ -702,8 +721,13 @@ section {
   .service .content {
     padding-top: 30px;
   }
-  .service .accordion-list {
+  .service .service-note {
     padding-bottom: 30px;
+  }
+}
+@media (max-width: 575px) {
+  .service .img {
+    min-height: 200px;
   }
 }
 
