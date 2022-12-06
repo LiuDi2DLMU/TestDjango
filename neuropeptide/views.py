@@ -87,7 +87,7 @@ def form_submit(request):
         try:
             # 文件保存
             new_file_name = "".join(random.sample([x for x in string.ascii_letters + string.digits], 10)) + ".fasta"
-            file_path = settings.STORAGE_LOCATION
+            file_path = os.path.join(settings.STORAGE_LOCATION, "neuropeptide")
             # 暴力尝试9999次无重复即可
             for i in range(9999):
                 if os.path.exists(os.path.join(file_path, new_file_name)):

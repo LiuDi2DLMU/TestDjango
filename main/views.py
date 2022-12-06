@@ -7,6 +7,11 @@ def index(request):
 
 
 def neuropepetide(request):
+    """
+    页面重定向到neuropeptide views里的index方法
+    :param request:
+    :return:
+    """
     return HttpResponseRedirect(reverse('neuropeptide:index'))
 
 

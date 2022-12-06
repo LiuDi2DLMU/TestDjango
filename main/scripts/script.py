@@ -11,21 +11,29 @@ import smtplib
 from django.db.models import Q
 
 
-def sent_email(state, record, result_file_path=None):
+def sent_email(state, record, result_file_path=None, content: str = None):
+    """
+    该函数是用于发送邮件的
+    :param state: 表示任务的状态，1表示成功，0表示失败，用于调用函数中默认的邮件内容。
+    :param record: 任务的具体信息，也就是对应的数据库记录。
+    :param result_file_path: 任务如果过程，结果文件的路径，以附件的形式返回给用户。
+    :param content: 自定义的邮件内容，为空则使用函数中默认的邮件内容。
+    :return: 无返回值
+    """
     mail_host = settings.MAIL_HOST
     mail_sender = settings.MAIL_SENDER
     mail_passwd = settings.MAIL_PASSWD
-
+    # 主题设置
     msg = MIMEMultipart()
     msg["Subject"] = "带有附件的邮件"
     msg["From"] = mail_sender
     msg["To"] = record.email
-
+    # 成功的邮件模板
     success_mail_content = f'''
         Dear {record.name},
         您在XXX提交的任务已完成，结果将随这本邮件，以附件的形式发送给您。
     '''
-
+    #
     fail_mail_content = f'''
         Dear {record.name},
         出于未知原因，您的任务失败了，我们对此万分抱歉。
@@ -35,6 +43,9 @@ def sent_email(state, record, result_file_path=None):
         mail_content = success_mail_content
     else:
         mail_content = fail_mail_content
+
+    if content is not None:
+        mail_content = content
 
     msg.attach(MIMEText(mail_content, "plain", "utf-8"))
 
@@ -53,7 +64,12 @@ def sent_email(state, record, result_file_path=None):
 
 
 def run_neuropeptide(record):
-    file_path = os.path.join(settings.STORAGE_LOCATION, record.filename)
+    """
+    用于执行对应的神经肽任务
+    :param record: 执行任务对应的数据库记录
+    :return: 无返回
+    """
+    file_path = os.path.join(settings.STORAGE_LOCATION, "neuropeptide", record.filename)
     email = record.email
     # 上面的是python解释器的路径 利用which python可以获取
     # 下面是脚本的绝对路径位置以及参数
@@ -119,17 +135,25 @@ def run_task():
             time.sleep(settings.SLEEP_TIME)
             print(f"No task, sleep {settings.SLEEP_TIME} seconds")
 
-        if int(time.time()) - clean_time >= settings.CLEAN_TIME or task_count >= 0:
-            # TODO 清理一次数据库，将所有已经完成的删除
+        if int(time.time()) - clean_time >= settings.CLEAN_TIME or task_count >= settings.CLEAN_COUNT:
+            # 清理数据库，将所有非待执行的记录删除
             clean_time = time.time()
             task_count = 0
             file_path = settings.STORAGE_LOCATION
-            del_records = []
             for i in range(len(tables)):
+                # task_name 用于表明到底是哪个任务的记录，删除文件的位置或许有影响
+                task_name = task_names[i]
                 records = tables[i].objects.filter(~Q(state=0))
                 for temp in records:
-                    del_records.append(temp)
-            print(123)
+                    # 优先清理保存文件
+                    if task_name == "neuropeptide":
+                        result_filename = temp.filename.split(".")[0] + ".csv"
+                        if os.path.exists(os.path.join(file_path, task_name, result_filename)):
+                            os.remove(os.path.join(file_path, task_name, result_filename))
+                        if os.path.exists(os.path.join(file_path, task_name, temp.filename)):
+                            os.remove(os.path.join(file_path, task_name, temp.filename))
+                    print(task_name, "delete record")
+                    temp.delete()
 
 
 run_task()
